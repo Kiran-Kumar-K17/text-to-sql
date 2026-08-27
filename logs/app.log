@@ -900,3 +900,13 @@ LIMIT 1;
 2026-08-27 19:46:25,598 - ai_powered_database_query_assistant.assistant - INFO - Conversation added to memory
 2026-08-27 19:46:25,600 - ai_powered_database_query_assistant.assistant - INFO - Received question: asdfgh
 2026-08-27 19:46:26,212 - ai_powered_database_query_assistant.assistant - WARNING - Invalid question rejected: asdfgh
+2026-08-27 21:25:36,799 - ai_powered_database_query_assistant.assistant - INFO - Received question: How many customers are there?
+2026-08-27 21:25:37,529 - ai_powered_database_query_assistant.assistant - INFO - Question validation passed
+2026-08-27 21:25:37,529 - ai_powered_database_query_assistant.assistant - INFO - Generating SQL
+2026-08-27 21:25:38,237 - ai_powered_database_query_assistant.assistant - INFO - Generated SQL: SELECT COUNT(*) AS CustomerCount FROM Customer;
+2026-08-27 21:25:38,237 - ai_powered_database_query_assistant.assistant - INFO - SQL execution attempt 1
+2026-08-27 21:25:38,238 - ai_powered_database_query_assistant.assistant - INFO - Executing SQL on attempt 1
+2026-08-27 21:25:38,239 - ai_powered_database_query_assistant.assistant - INFO - SQL executed successfully on attempt 1
+2026-08-27 21:25:38,239 - ai_powered_database_query_assistant.assistant - INFO - Generating final answer
+2026-08-27 21:25:38,754 - ai_powered_database_query_assistant.assistant - INFO - Answer generated successfully
+2026-08-27 21:25:38,754 - ai_powered_database_query_assistant.assistant - INFO - Conversation added to memory

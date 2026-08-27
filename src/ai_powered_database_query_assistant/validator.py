@@ -13,7 +13,7 @@ def validate_sql(sql_query: str) -> bool:
     upper_sql = sql.upper()
 
     # Allow only read-only queries
-    if not (upper_sql.startswith("SELECT") or upper_sql.startswith("WITH")):
+    if not upper_sql.startswith(("SELECT", "WITH")):
         return False
 
     # Block dangerous SQL keywords as whole words
@@ -39,7 +39,4 @@ def validate_sql(sql_query: str) -> bool:
 
     # Prevent multiple SQL statements
     # A semicolon should only be allowed at the end
-    if ";" in sql:
-        return False
-
-    return True
+    return ";" not in sql

@@ -1,10 +1,9 @@
 import pytest
-
 from dotenv import load_dotenv
 
+from ai_powered_database_query_assistant.assistant import SQLAssistant
 from ai_powered_database_query_assistant.database import get_database
 from ai_powered_database_query_assistant.llm import get_llm
-from ai_powered_database_query_assistant.assistant import SQLAssistant
 
 
 @pytest.fixture(scope="module")

@@ -24,3 +24,9 @@ ai-powered-database-query-assistant = "ai_powered_database_query_assistant:main"
 [build-system]
 requires = ["uv_build>=0.12.5,<0.13.0"]
 build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest-cov>=7.1.0",
+    "ruff>=0.16.4",
+]

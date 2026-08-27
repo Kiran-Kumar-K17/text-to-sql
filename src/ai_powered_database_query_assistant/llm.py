@@ -1,4 +1,5 @@
 from langchain_groq import ChatGroq
+
 from ai_powered_database_query_assistant.config import MODEL_NAME, TEMPERATURE
 
 

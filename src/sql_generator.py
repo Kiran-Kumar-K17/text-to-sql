@@ -1,7 +1,7 @@
 from langchain_core.language_models import BaseChatModel
 
 
-def generate_sql(question: str, schema: str, llm: BaseChatModel) -> str:
+def generate_sql(question: str, schema: str, llm: BaseChatModel, context="") -> str:
 
     prompt = f"""
 You are an expert SQLite SQL generator.
@@ -11,6 +11,9 @@ generate a correct SQLite SQL query.
 
 Database Schema:
 {schema}
+
+Conversation Context:
+{context}
 
 User Question:
 {question}

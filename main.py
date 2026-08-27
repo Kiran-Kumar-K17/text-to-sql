@@ -16,30 +16,16 @@ assistant = SQLAssistant(db=db, llm=llm)
 
 
 questions = [
-    "How many customers are there?",
-    "Show all customers from Germany.",
-    "Which country has the highest number of customers?",
-    "Show the top 5 most expensive tracks.",
-    "List all albums created by AC/DC.",
-    "Which artist has the most tracks?",
     "Show the top 5 customers by total spending.",
-    "Which music genre has the highest number of tracks?",
-    "Which artist generated the highest revenue from track sales?",
-    "Show the top 5 countries by total revenue.",
+    "Show only the first 2.",
+    "What country are they from?",
 ]
 
-for i, question in enumerate(questions, start=1):
-
-    print("\n" + "=" * 100)
-    print(f"QUESTION {i}: {question}")
-    print("=" * 100)
+for question in questions:
 
     response = assistant.ask(question)
 
-    print(f"\nQuestion:\n{response.question}")
-
+    print("\n" + "=" * 60)
+    print(f"Question: {response.question}")
     print(f"\nSQL:\n{response.sql}")
-
     print(f"\nAnswer:\n{response.answer}")
-
-    print(f"\nSuccess:\n{response.success}")

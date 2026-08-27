@@ -1,87 +1,45 @@
 from dotenv import load_dotenv
 
 from src.database import get_database
-from src.schema import get_schema
 from src.llm import get_llm
-from src.sql_generator import generate_sql
-from src.validator import validate_sql
-from src.executor import execute_sql
-from src.sql_fixer import fix_sql
-from src.answer_generator import generate_answer
+from src.assistant import SQLAssistant
 
 load_dotenv()
 
 
-# Database
 db = get_database("data/Chinook.db")
 
-# Schema
-schema = get_schema(db)
-
-# LLM
 llm = get_llm()
 
 
-# User question
-question = "Show the top 5 customers by total spending."
+assistant = SQLAssistant(db=db, llm=llm)
 
 
-# Generate SQL
-sql = generate_sql(question=question, schema=schema, llm=llm)
+questions = [
+    "How many customers are there?",
+    "Show all customers from Germany.",
+    "Which country has the highest number of customers?",
+    "Show the top 5 most expensive tracks.",
+    "List all albums created by AC/DC.",
+    "Which artist has the most tracks?",
+    "Show the top 5 customers by total spending.",
+    "Which music genre has the highest number of tracks?",
+    "Which artist generated the highest revenue from track sales?",
+    "Show the top 5 countries by total revenue.",
+]
 
-print(f"\nQuestion:\n{question}")
-print(f"\nGenerated SQL:\n{sql}")
+for i, question in enumerate(questions, start=1):
 
+    print("\n" + "=" * 100)
+    print(f"QUESTION {i}: {question}")
+    print("=" * 100)
 
-# Store the final SQL
-final_sql = None
-result = None
+    response = assistant.ask(question)
 
+    print(f"\nQuestion:\n{response.question}")
 
-# Validate generated SQL
-if not validate_sql(sql):
+    print(f"\nSQL:\n{response.sql}")
 
-    print("\nGenerated unsafe or invalid SQL.")
+    print(f"\nAnswer:\n{response.answer}")
 
-else:
-
-    try:
-        # First execution attempt
-        result = execute_sql(db=db, sql_query=sql)
-
-        final_sql = sql
-
-    except Exception as e:
-
-        print("\nInitial SQL failed. Trying to fix it...")
-
-        error = str(e)
-
-        # Fix SQL
-        fixed_sql = fix_sql(
-            question=question, schema=schema, failed_sql=sql, error=error, llm=llm
-        )
-
-        print(f"\nFixed SQL:\n{fixed_sql}")
-
-        # Validate fixed SQL
-        if validate_sql(fixed_sql):
-
-            try:
-                result = execute_sql(db=db, sql_query=fixed_sql)
-
-                final_sql = fixed_sql
-
-            except Exception as e:
-                print(f"\nFixed SQL also failed:\n{e}")
-
-        else:
-            print("\nFixed SQL is unsafe or invalid.")
-
-
-# Generate final answer
-if result is not None:
-
-    answer = generate_answer(question=question, sql=final_sql, result=result, llm=llm)
-
-    print(f"\nAnswer:\n{answer}")
+    print(f"\nSuccess:\n{response.success}")

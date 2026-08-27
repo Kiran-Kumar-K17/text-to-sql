@@ -56,3 +56,623 @@ LIMIT 1;
 2026-08-27 15:04:35,324 - ai_powered_database_query_assistant.assistant - INFO - Fixed SQL: SELECT * FROM AnotherWrongTable;
 2026-08-27 15:04:35,324 - ai_powered_database_query_assistant.assistant - INFO - Executing fixed SQL
 2026-08-27 15:04:35,324 - ai_powered_database_query_assistant.assistant - ERROR - Fixed SQL execution failed: still invalid SQL
+2026-08-27 15:08:08,103 - ai_powered_database_query_assistant.assistant - INFO - Received question: How many customers are there?
+2026-08-27 15:08:15,126 - ai_powered_database_query_assistant.assistant - INFO - Question validation passed
+2026-08-27 15:08:15,126 - ai_powered_database_query_assistant.assistant - INFO - Generating SQL
+2026-08-27 15:08:15,525 - ai_powered_database_query_assistant.assistant - INFO - Generated SQL: SELECT COUNT(*) AS CustomerCount FROM Customer;
+2026-08-27 15:08:15,525 - ai_powered_database_query_assistant.assistant - INFO - SQL validation passed
+2026-08-27 15:08:15,525 - ai_powered_database_query_assistant.assistant - INFO - Executing SQL
+2026-08-27 15:08:15,526 - ai_powered_database_query_assistant.assistant - INFO - SQL executed successfully
+2026-08-27 15:08:15,526 - ai_powered_database_query_assistant.assistant - INFO - Generating final answer
+2026-08-27 15:08:16,145 - ai_powered_database_query_assistant.assistant - INFO - Answer generated successfully
+2026-08-27 15:08:16,145 - ai_powered_database_query_assistant.assistant - INFO - Conversation added to memory
+2026-08-27 15:08:16,146 - ai_powered_database_query_assistant.assistant - INFO - Received question: Which artist has the most tracks?
+2026-08-27 15:08:16,657 - ai_powered_database_query_assistant.assistant - INFO - Question validation passed
+2026-08-27 15:08:16,657 - ai_powered_database_query_assistant.assistant - INFO - Generating SQL
+2026-08-27 15:08:17,547 - ai_powered_database_query_assistant.assistant - INFO - Generated SQL: SELECT a.Name
+FROM Artist a
+JOIN Album al ON al.ArtistId = a.ArtistId
+JOIN Track t ON t.AlbumId = al.AlbumId
+GROUP BY a.ArtistId, a.Name
+ORDER BY COUNT(t.TrackId) DESC
+LIMIT 1;
+2026-08-27 15:08:17,547 - ai_powered_database_query_assistant.assistant - INFO - SQL validation passed
+2026-08-27 15:08:17,547 - ai_powered_database_query_assistant.assistant - INFO - Executing SQL
+2026-08-27 15:08:17,549 - ai_powered_database_query_assistant.assistant - INFO - SQL executed successfully
+2026-08-27 15:08:17,549 - ai_powered_database_query_assistant.assistant - INFO - Generating final answer
+2026-08-27 15:08:17,845 - ai_powered_database_query_assistant.assistant - INFO - Answer generated successfully
+2026-08-27 15:08:17,845 - ai_powered_database_query_assistant.assistant - INFO - Conversation added to memory
+2026-08-27 15:08:17,868 - ai_powered_database_query_assistant.assistant - INFO - Received question: asdfgh
+2026-08-27 15:08:18,500 - ai_powered_database_query_assistant.assistant - WARNING - Invalid question rejected: asdfgh
+2026-08-27 15:09:48,489 - ai_powered_database_query_assistant.assistant - INFO - Received question: How many customers are there?
+2026-08-27 15:09:49,134 - ai_powered_database_query_assistant.assistant - INFO - Question validation passed
+2026-08-27 15:09:49,134 - ai_powered_database_query_assistant.assistant - INFO - Generating SQL
+2026-08-27 15:09:50,353 - ai_powered_database_query_assistant.assistant - INFO - Generated SQL: SELECT COUNT(*) AS CustomerCount FROM Customer;
+2026-08-27 15:09:50,353 - ai_powered_database_query_assistant.assistant - INFO - SQL validation passed
+2026-08-27 15:09:50,353 - ai_powered_database_query_assistant.assistant - INFO - Executing SQL
+2026-08-27 15:09:50,354 - ai_powered_database_query_assistant.assistant - INFO - SQL executed successfully
+2026-08-27 15:09:50,354 - ai_powered_database_query_assistant.assistant - INFO - Generating final answer
+2026-08-27 15:09:50,968 - ai_powered_database_query_assistant.assistant - INFO - Answer generated successfully
+2026-08-27 15:09:50,968 - ai_powered_database_query_assistant.assistant - INFO - Conversation added to memory
+2026-08-27 15:09:50,969 - ai_powered_database_query_assistant.assistant - INFO - Received question: Which artist has the most tracks?
+2026-08-27 15:09:51,581 - ai_powered_database_query_assistant.assistant - INFO - Question validation passed
+2026-08-27 15:09:51,581 - ai_powered_database_query_assistant.assistant - INFO - Generating SQL
+2026-08-27 15:09:52,606 - ai_powered_database_query_assistant.assistant - INFO - Generated SQL: SELECT a.Name
+FROM Artist a
+JOIN Album al ON al.ArtistId = a.ArtistId
+JOIN Track t ON t.AlbumId = al.AlbumId
+GROUP BY a.ArtistId, a.Name
+ORDER BY COUNT(t.TrackId) DESC
+LIMIT 1;
+2026-08-27 15:09:52,606 - ai_powered_database_query_assistant.assistant - INFO - SQL validation passed
+2026-08-27 15:09:52,606 - ai_powered_database_query_assistant.assistant - INFO - Executing SQL
+2026-08-27 15:09:52,607 - ai_powered_database_query_assistant.assistant - INFO - SQL executed successfully
+2026-08-27 15:09:52,607 - ai_powered_database_query_assistant.assistant - INFO - Generating final answer
+2026-08-27 15:09:53,220 - ai_powered_database_query_assistant.assistant - INFO - Answer generated successfully
+2026-08-27 15:09:53,220 - ai_powered_database_query_assistant.assistant - INFO - Conversation added to memory
+2026-08-27 15:09:53,221 - ai_powered_database_query_assistant.assistant - INFO - Received question: asdfgh
+2026-08-27 15:09:53,835 - ai_powered_database_query_assistant.assistant - WARNING - Invalid question rejected: asdfgh
+2026-08-27 15:11:44,213 - ai_powered_database_query_assistant.assistant - INFO - Received question: How many customers are there?
+2026-08-27 15:11:44,213 - ai_powered_database_query_assistant.assistant - INFO - Question validation passed
+2026-08-27 15:11:44,213 - ai_powered_database_query_assistant.assistant - INFO - Generating SQL
+2026-08-27 15:11:44,213 - ai_powered_database_query_assistant.assistant - INFO - Generated SQL: SELECT COUNT(*) FROM Customer;
+2026-08-27 15:11:44,213 - ai_powered_database_query_assistant.assistant - INFO - SQL validation passed
+2026-08-27 15:11:44,213 - ai_powered_database_query_assistant.assistant - INFO - Executing SQL
+2026-08-27 15:11:44,213 - ai_powered_database_query_assistant.assistant - INFO - SQL executed successfully
+2026-08-27 15:11:44,213 - ai_powered_database_query_assistant.assistant - INFO - Generating final answer
+2026-08-27 15:11:44,213 - ai_powered_database_query_assistant.assistant - INFO - Answer generated successfully
+2026-08-27 15:11:44,213 - ai_powered_database_query_assistant.assistant - INFO - Conversation added to memory
+2026-08-27 15:11:44,215 - ai_powered_database_query_assistant.assistant - INFO - Received question: q
+2026-08-27 15:11:44,215 - ai_powered_database_query_assistant.assistant - WARNING - Invalid question rejected: q
+2026-08-27 15:11:44,216 - ai_powered_database_query_assistant.assistant - INFO - Received question: Delete all customers
+2026-08-27 15:11:44,216 - ai_powered_database_query_assistant.assistant - INFO - Question validation passed
+2026-08-27 15:11:44,216 - ai_powered_database_query_assistant.assistant - INFO - Generating SQL
+2026-08-27 15:11:44,216 - ai_powered_database_query_assistant.assistant - INFO - Generated SQL: DELETE FROM Customer;
+2026-08-27 15:11:44,216 - ai_powered_database_query_assistant.assistant - WARNING - Generated SQL failed validation
+2026-08-27 15:11:44,219 - ai_powered_database_query_assistant.assistant - INFO - Received question: Show customers
+2026-08-27 15:11:44,219 - ai_powered_database_query_assistant.assistant - INFO - Question validation passed
+2026-08-27 15:11:44,219 - ai_powered_database_query_assistant.assistant - INFO - Generating SQL
+2026-08-27 15:11:44,219 - ai_powered_database_query_assistant.assistant - INFO - Generated SQL: SELECT * FROM Customers;
+2026-08-27 15:11:44,219 - ai_powered_database_query_assistant.assistant - INFO - SQL validation passed
+2026-08-27 15:11:44,219 - ai_powered_database_query_assistant.assistant - INFO - Executing SQL
+2026-08-27 15:11:44,219 - ai_powered_database_query_assistant.assistant - ERROR - SQL execution failed: no such table: Customers
+2026-08-27 15:11:44,219 - ai_powered_database_query_assistant.assistant - INFO - Attempting to fix SQL
+2026-08-27 15:11:44,219 - ai_powered_database_query_assistant.assistant - INFO - Fixed SQL: SELECT * FROM Customer;
+2026-08-27 15:11:44,219 - ai_powered_database_query_assistant.assistant - INFO - Executing fixed SQL
+2026-08-27 15:11:44,219 - ai_powered_database_query_assistant.assistant - INFO - Fixed SQL executed successfully
+2026-08-27 15:11:44,219 - ai_powered_database_query_assistant.assistant - INFO - Generating final answer
+2026-08-27 15:11:44,219 - ai_powered_database_query_assistant.assistant - INFO - Answer generated successfully
+2026-08-27 15:11:44,219 - ai_powered_database_query_assistant.assistant - INFO - Conversation added to memory
+2026-08-27 15:11:44,221 - ai_powered_database_query_assistant.assistant - INFO - Received question: Show something
+2026-08-27 15:11:44,221 - ai_powered_database_query_assistant.assistant - INFO - Question validation passed
+2026-08-27 15:11:44,221 - ai_powered_database_query_assistant.assistant - INFO - Generating SQL
+2026-08-27 15:11:44,221 - ai_powered_database_query_assistant.assistant - INFO - Generated SQL: SELECT * FROM WrongTable;
+2026-08-27 15:11:44,221 - ai_powered_database_query_assistant.assistant - INFO - SQL validation passed
+2026-08-27 15:11:44,221 - ai_powered_database_query_assistant.assistant - INFO - Executing SQL
+2026-08-27 15:11:44,221 - ai_powered_database_query_assistant.assistant - ERROR - SQL execution failed: no such table: WrongTable
+2026-08-27 15:11:44,221 - ai_powered_database_query_assistant.assistant - INFO - Attempting to fix SQL
+2026-08-27 15:11:44,222 - ai_powered_database_query_assistant.assistant - INFO - Fixed SQL: SELECT * FROM AnotherWrongTable;
+2026-08-27 15:11:44,222 - ai_powered_database_query_assistant.assistant - INFO - Executing fixed SQL
+2026-08-27 15:11:44,222 - ai_powered_database_query_assistant.assistant - ERROR - Fixed SQL execution failed: still invalid SQL
+2026-08-27 15:11:44,391 - ai_powered_database_query_assistant.assistant - INFO - Received question: How many customers are there?
+2026-08-27 15:11:45,054 - ai_powered_database_query_assistant.assistant - INFO - Question validation passed
+2026-08-27 15:11:45,054 - ai_powered_database_query_assistant.assistant - INFO - Generating SQL
+2026-08-27 15:11:45,758 - ai_powered_database_query_assistant.assistant - INFO - Generated SQL: SELECT COUNT(*) AS CustomerCount FROM Customer;
+2026-08-27 15:11:45,759 - ai_powered_database_query_assistant.assistant - INFO - SQL validation passed
+2026-08-27 15:11:45,759 - ai_powered_database_query_assistant.assistant - INFO - Executing SQL
+2026-08-27 15:11:45,759 - ai_powered_database_query_assistant.assistant - INFO - SQL executed successfully
+2026-08-27 15:11:45,760 - ai_powered_database_query_assistant.assistant - INFO - Generating final answer
+2026-08-27 15:11:46,270 - ai_powered_database_query_assistant.assistant - INFO - Answer generated successfully
+2026-08-27 15:11:46,271 - ai_powered_database_query_assistant.assistant - INFO - Conversation added to memory
+2026-08-27 15:11:46,272 - ai_powered_database_query_assistant.assistant - INFO - Received question: Which artist has the most tracks?
+2026-08-27 15:11:46,887 - ai_powered_database_query_assistant.assistant - INFO - Question validation passed
+2026-08-27 15:11:46,887 - ai_powered_database_query_assistant.assistant - INFO - Generating SQL
+2026-08-27 15:11:47,808 - ai_powered_database_query_assistant.assistant - INFO - Generated SQL: SELECT a.Name
+FROM Artist a
+JOIN Album al ON al.ArtistId = a.ArtistId
+JOIN Track t ON t.AlbumId = al.AlbumId
+GROUP BY a.ArtistId
+ORDER BY COUNT(t.TrackId) DESC
+LIMIT 1;
+2026-08-27 15:11:47,808 - ai_powered_database_query_assistant.assistant - INFO - SQL validation passed
+2026-08-27 15:11:47,808 - ai_powered_database_query_assistant.assistant - INFO - Executing SQL
+2026-08-27 15:11:47,809 - ai_powered_database_query_assistant.assistant - INFO - SQL executed successfully
+2026-08-27 15:11:47,809 - ai_powered_database_query_assistant.assistant - INFO - Generating final answer
+2026-08-27 15:11:48,422 - ai_powered_database_query_assistant.assistant - INFO - Answer generated successfully
+2026-08-27 15:11:48,422 - ai_powered_database_query_assistant.assistant - INFO - Conversation added to memory
+2026-08-27 15:11:48,423 - ai_powered_database_query_assistant.assistant - INFO - Received question: asdfgh
+2026-08-27 15:11:49,140 - ai_powered_database_query_assistant.assistant - WARNING - Invalid question rejected: asdfgh
+2026-08-27 15:17:10,988 - ai_powered_database_query_assistant.assistant - INFO - Received question: How many customers are there?
+2026-08-27 15:17:10,988 - ai_powered_database_query_assistant.assistant - INFO - Question validation passed
+2026-08-27 15:17:10,989 - ai_powered_database_query_assistant.assistant - INFO - Generating SQL
+2026-08-27 15:17:10,989 - ai_powered_database_query_assistant.assistant - INFO - Generated SQL: SELECT COUNT(*) FROM Customer;
+2026-08-27 15:17:10,989 - ai_powered_database_query_assistant.assistant - INFO - SQL execution attempt 1
+2026-08-27 15:17:10,989 - ai_powered_database_query_assistant.assistant - INFO - Executing SQL on attempt 1
+2026-08-27 15:17:10,989 - ai_powered_database_query_assistant.assistant - INFO - SQL executed successfully on attempt 1
+2026-08-27 15:17:10,989 - ai_powered_database_query_assistant.assistant - INFO - Generating final answer
+2026-08-27 15:17:10,989 - ai_powered_database_query_assistant.assistant - INFO - Answer generated successfully
+2026-08-27 15:17:10,989 - ai_powered_database_query_assistant.assistant - INFO - Conversation added to memory
+2026-08-27 15:17:10,991 - ai_powered_database_query_assistant.assistant - INFO - Received question: q
+2026-08-27 15:17:10,991 - ai_powered_database_query_assistant.assistant - WARNING - Invalid question rejected: q
+2026-08-27 15:17:11,016 - ai_powered_database_query_assistant.assistant - INFO - Received question: Delete all customers
+2026-08-27 15:17:11,017 - ai_powered_database_query_assistant.assistant - INFO - Question validation passed
+2026-08-27 15:17:11,017 - ai_powered_database_query_assistant.assistant - INFO - Generating SQL
+2026-08-27 15:17:11,017 - ai_powered_database_query_assistant.assistant - INFO - Generated SQL: DELETE FROM Customer;
+2026-08-27 15:17:11,017 - ai_powered_database_query_assistant.assistant - INFO - SQL execution attempt 1
+2026-08-27 15:17:11,017 - ai_powered_database_query_assistant.assistant - ERROR - SQL validation failed on attempt 1
+2026-08-27 15:17:11,019 - ai_powered_database_query_assistant.assistant - INFO - Received question: Show customers
+2026-08-27 15:17:11,019 - ai_powered_database_query_assistant.assistant - INFO - Question validation passed
+2026-08-27 15:17:11,019 - ai_powered_database_query_assistant.assistant - INFO - Generating SQL
+2026-08-27 15:17:11,019 - ai_powered_database_query_assistant.assistant - INFO - Generated SQL: SELECT * FROM Customers;
+2026-08-27 15:17:11,019 - ai_powered_database_query_assistant.assistant - INFO - SQL execution attempt 1
+2026-08-27 15:17:11,019 - ai_powered_database_query_assistant.assistant - INFO - Executing SQL on attempt 1
+2026-08-27 15:17:11,019 - ai_powered_database_query_assistant.assistant - ERROR - SQL execution failed on attempt 1: no such table: Customers
+2026-08-27 15:17:11,019 - ai_powered_database_query_assistant.assistant - INFO - Attempting to fix SQL after attempt 1
+2026-08-27 15:17:11,019 - ai_powered_database_query_assistant.assistant - INFO - Fixed SQL: SELECT * FROM Customer;
+2026-08-27 15:17:11,019 - ai_powered_database_query_assistant.assistant - INFO - SQL execution attempt 2
+2026-08-27 15:17:11,019 - ai_powered_database_query_assistant.assistant - INFO - Executing SQL on attempt 2
+2026-08-27 15:17:11,019 - ai_powered_database_query_assistant.assistant - INFO - SQL executed successfully on attempt 2
+2026-08-27 15:17:11,020 - ai_powered_database_query_assistant.assistant - INFO - Generating final answer
+2026-08-27 15:17:11,020 - ai_powered_database_query_assistant.assistant - INFO - Answer generated successfully
+2026-08-27 15:17:11,020 - ai_powered_database_query_assistant.assistant - INFO - Conversation added to memory
+2026-08-27 15:17:11,022 - ai_powered_database_query_assistant.assistant - INFO - Received question: Show something
+2026-08-27 15:17:11,022 - ai_powered_database_query_assistant.assistant - INFO - Question validation passed
+2026-08-27 15:17:11,022 - ai_powered_database_query_assistant.assistant - INFO - Generating SQL
+2026-08-27 15:17:11,022 - ai_powered_database_query_assistant.assistant - INFO - Generated SQL: SELECT * FROM WrongTable;
+2026-08-27 15:17:11,022 - ai_powered_database_query_assistant.assistant - INFO - SQL execution attempt 1
+2026-08-27 15:17:11,022 - ai_powered_database_query_assistant.assistant - INFO - Executing SQL on attempt 1
+2026-08-27 15:17:11,022 - ai_powered_database_query_assistant.assistant - ERROR - SQL execution failed on attempt 1: no such table: WrongTable
+2026-08-27 15:17:11,022 - ai_powered_database_query_assistant.assistant - INFO - Attempting to fix SQL after attempt 1
+2026-08-27 15:17:11,022 - ai_powered_database_query_assistant.assistant - INFO - Fixed SQL: SELECT * FROM AnotherWrongTable;
+2026-08-27 15:17:11,022 - ai_powered_database_query_assistant.assistant - INFO - SQL execution attempt 2
+2026-08-27 15:17:11,022 - ai_powered_database_query_assistant.assistant - INFO - Executing SQL on attempt 2
+2026-08-27 15:17:11,023 - ai_powered_database_query_assistant.assistant - ERROR - SQL execution failed on attempt 2: still invalid SQL
+2026-08-27 15:17:11,023 - ai_powered_database_query_assistant.assistant - INFO - Attempting to fix SQL after attempt 2
+2026-08-27 15:17:11,023 - ai_powered_database_query_assistant.assistant - INFO - Fixed SQL: SELECT * FROM AnotherWrongTable;
+2026-08-27 15:17:11,023 - ai_powered_database_query_assistant.assistant - INFO - SQL execution attempt 3
+2026-08-27 15:17:11,023 - ai_powered_database_query_assistant.assistant - INFO - Executing SQL on attempt 3
+2026-08-27 15:17:11,023 - ai_powered_database_query_assistant.assistant - ERROR - SQL execution failed on attempt 3: 
+2026-08-27 15:17:11,023 - ai_powered_database_query_assistant.assistant - ERROR - Maximum SQL retry limit reached
+2026-08-27 15:17:11,216 - ai_powered_database_query_assistant.assistant - INFO - Received question: How many customers are there?
+2026-08-27 15:17:11,941 - ai_powered_database_query_assistant.assistant - INFO - Question validation passed
+2026-08-27 15:17:11,942 - ai_powered_database_query_assistant.assistant - INFO - Generating SQL
+2026-08-27 15:17:12,621 - ai_powered_database_query_assistant.assistant - INFO - Generated SQL: SELECT COUNT(*) AS CustomerCount FROM Customer;
+2026-08-27 15:17:12,621 - ai_powered_database_query_assistant.assistant - INFO - SQL execution attempt 1
+2026-08-27 15:17:12,622 - ai_powered_database_query_assistant.assistant - INFO - Executing SQL on attempt 1
+2026-08-27 15:17:12,622 - ai_powered_database_query_assistant.assistant - INFO - SQL executed successfully on attempt 1
+2026-08-27 15:17:12,622 - ai_powered_database_query_assistant.assistant - INFO - Generating final answer
+2026-08-27 15:17:13,132 - ai_powered_database_query_assistant.assistant - INFO - Answer generated successfully
+2026-08-27 15:17:13,132 - ai_powered_database_query_assistant.assistant - INFO - Conversation added to memory
+2026-08-27 15:17:13,133 - ai_powered_database_query_assistant.assistant - INFO - Received question: Which artist has the most tracks?
+2026-08-27 15:17:13,850 - ai_powered_database_query_assistant.assistant - INFO - Question validation passed
+2026-08-27 15:17:13,850 - ai_powered_database_query_assistant.assistant - INFO - Generating SQL
+2026-08-27 15:17:14,874 - ai_powered_database_query_assistant.assistant - INFO - Generated SQL: SELECT a.Name
+FROM Artist a
+JOIN Album al ON al.ArtistId = a.ArtistId
+JOIN Track t ON t.AlbumId = al.AlbumId
+GROUP BY a.ArtistId, a.Name
+ORDER BY COUNT(t.TrackId) DESC
+LIMIT 1;
+2026-08-27 15:17:14,874 - ai_powered_database_query_assistant.assistant - INFO - SQL execution attempt 1
+2026-08-27 15:17:14,874 - ai_powered_database_query_assistant.assistant - INFO - Executing SQL on attempt 1
+2026-08-27 15:17:14,875 - ai_powered_database_query_assistant.assistant - INFO - SQL executed successfully on attempt 1
+2026-08-27 15:17:14,875 - ai_powered_database_query_assistant.assistant - INFO - Generating final answer
+2026-08-27 15:17:15,488 - ai_powered_database_query_assistant.assistant - INFO - Answer generated successfully
+2026-08-27 15:17:15,488 - ai_powered_database_query_assistant.assistant - INFO - Conversation added to memory
+2026-08-27 15:17:15,489 - ai_powered_database_query_assistant.assistant - INFO - Received question: asdfgh
+2026-08-27 15:17:16,103 - ai_powered_database_query_assistant.assistant - WARNING - Invalid question rejected: asdfgh
+2026-08-27 15:20:11,067 - ai_powered_database_query_assistant.assistant - INFO - Received question: How many customers are there?
+2026-08-27 15:20:11,067 - ai_powered_database_query_assistant.assistant - INFO - Question validation passed
+2026-08-27 15:20:11,067 - ai_powered_database_query_assistant.assistant - INFO - Generating SQL
+2026-08-27 15:20:11,067 - ai_powered_database_query_assistant.assistant - INFO - Generated SQL: SELECT COUNT(*) FROM Customer;
+2026-08-27 15:20:11,067 - ai_powered_database_query_assistant.assistant - INFO - SQL execution attempt 1
+2026-08-27 15:20:11,067 - ai_powered_database_query_assistant.assistant - INFO - Executing SQL on attempt 1
+2026-08-27 15:20:11,067 - ai_powered_database_query_assistant.assistant - INFO - SQL executed successfully on attempt 1
+2026-08-27 15:20:11,067 - ai_powered_database_query_assistant.assistant - INFO - Generating final answer
+2026-08-27 15:20:11,067 - ai_powered_database_query_assistant.assistant - INFO - Answer generated successfully
+2026-08-27 15:20:11,067 - ai_powered_database_query_assistant.assistant - INFO - Conversation added to memory
+2026-08-27 15:20:11,069 - ai_powered_database_query_assistant.assistant - INFO - Received question: q
+2026-08-27 15:20:11,069 - ai_powered_database_query_assistant.assistant - WARNING - Invalid question rejected: q
+2026-08-27 15:20:11,070 - ai_powered_database_query_assistant.assistant - INFO - Received question: Delete all customers
+2026-08-27 15:20:11,071 - ai_powered_database_query_assistant.assistant - INFO - Question validation passed
+2026-08-27 15:20:11,071 - ai_powered_database_query_assistant.assistant - INFO - Generating SQL
+2026-08-27 15:20:11,071 - ai_powered_database_query_assistant.assistant - INFO - Generated SQL: DELETE FROM Customer;
+2026-08-27 15:20:11,071 - ai_powered_database_query_assistant.assistant - INFO - SQL execution attempt 1
+2026-08-27 15:20:11,071 - ai_powered_database_query_assistant.assistant - ERROR - SQL validation failed on attempt 1
+2026-08-27 15:20:11,073 - ai_powered_database_query_assistant.assistant - INFO - Received question: Show customers
+2026-08-27 15:20:11,073 - ai_powered_database_query_assistant.assistant - INFO - Question validation passed
+2026-08-27 15:20:11,073 - ai_powered_database_query_assistant.assistant - INFO - Generating SQL
+2026-08-27 15:20:11,073 - ai_powered_database_query_assistant.assistant - INFO - Generated SQL: SELECT * FROM Customers;
+2026-08-27 15:20:11,073 - ai_powered_database_query_assistant.assistant - INFO - SQL execution attempt 1
+2026-08-27 15:20:11,073 - ai_powered_database_query_assistant.assistant - INFO - Executing SQL on attempt 1
+2026-08-27 15:20:11,073 - ai_powered_database_query_assistant.assistant - ERROR - SQL execution failed on attempt 1: no such table: Customers
+2026-08-27 15:20:11,073 - ai_powered_database_query_assistant.assistant - INFO - Attempting to fix SQL after attempt 1
+2026-08-27 15:20:11,073 - ai_powered_database_query_assistant.assistant - INFO - Fixed SQL: SELECT * FROM Customer;
+2026-08-27 15:20:11,073 - ai_powered_database_query_assistant.assistant - INFO - SQL execution attempt 2
+2026-08-27 15:20:11,073 - ai_powered_database_query_assistant.assistant - INFO - Executing SQL on attempt 2
+2026-08-27 15:20:11,073 - ai_powered_database_query_assistant.assistant - INFO - SQL executed successfully on attempt 2
+2026-08-27 15:20:11,073 - ai_powered_database_query_assistant.assistant - INFO - Generating final answer
+2026-08-27 15:20:11,074 - ai_powered_database_query_assistant.assistant - INFO - Answer generated successfully
+2026-08-27 15:20:11,074 - ai_powered_database_query_assistant.assistant - INFO - Conversation added to memory
+2026-08-27 15:20:11,076 - ai_powered_database_query_assistant.assistant - INFO - Received question: Show something
+2026-08-27 15:20:11,076 - ai_powered_database_query_assistant.assistant - INFO - Question validation passed
+2026-08-27 15:20:11,076 - ai_powered_database_query_assistant.assistant - INFO - Generating SQL
+2026-08-27 15:20:11,076 - ai_powered_database_query_assistant.assistant - INFO - Generated SQL: SELECT * FROM WrongTable;
+2026-08-27 15:20:11,076 - ai_powered_database_query_assistant.assistant - INFO - SQL execution attempt 1
+2026-08-27 15:20:11,076 - ai_powered_database_query_assistant.assistant - INFO - Executing SQL on attempt 1
+2026-08-27 15:20:11,076 - ai_powered_database_query_assistant.assistant - ERROR - SQL execution failed on attempt 1: no such table: WrongTable
+2026-08-27 15:20:11,076 - ai_powered_database_query_assistant.assistant - INFO - Attempting to fix SQL after attempt 1
+2026-08-27 15:20:11,076 - ai_powered_database_query_assistant.assistant - INFO - Fixed SQL: SELECT * FROM AnotherWrongTable;
+2026-08-27 15:20:11,076 - ai_powered_database_query_assistant.assistant - INFO - SQL execution attempt 2
+2026-08-27 15:20:11,076 - ai_powered_database_query_assistant.assistant - INFO - Executing SQL on attempt 2
+2026-08-27 15:20:11,077 - ai_powered_database_query_assistant.assistant - ERROR - SQL execution failed on attempt 2: still invalid SQL
+2026-08-27 15:20:11,077 - ai_powered_database_query_assistant.assistant - INFO - Attempting to fix SQL after attempt 2
+2026-08-27 15:20:11,077 - ai_powered_database_query_assistant.assistant - INFO - Fixed SQL: SELECT * FROM AnotherWrongTable;
+2026-08-27 15:20:11,077 - ai_powered_database_query_assistant.assistant - INFO - SQL execution attempt 3
+2026-08-27 15:20:11,077 - ai_powered_database_query_assistant.assistant - INFO - Executing SQL on attempt 3
+2026-08-27 15:20:11,077 - ai_powered_database_query_assistant.assistant - ERROR - SQL execution failed on attempt 3: still invalid SQL
+2026-08-27 15:20:11,077 - ai_powered_database_query_assistant.assistant - ERROR - Maximum SQL retry limit reached
+2026-08-27 15:20:11,234 - ai_powered_database_query_assistant.assistant - INFO - Received question: How many customers are there?
+2026-08-27 15:20:11,832 - ai_powered_database_query_assistant.assistant - INFO - Question validation passed
+2026-08-27 15:20:11,832 - ai_powered_database_query_assistant.assistant - INFO - Generating SQL
+2026-08-27 15:20:12,416 - ai_powered_database_query_assistant.assistant - INFO - Generated SQL: SELECT COUNT(*) AS CustomerCount FROM Customer;
+2026-08-27 15:20:12,416 - ai_powered_database_query_assistant.assistant - INFO - SQL execution attempt 1
+2026-08-27 15:20:12,416 - ai_powered_database_query_assistant.assistant - INFO - Executing SQL on attempt 1
+2026-08-27 15:20:12,417 - ai_powered_database_query_assistant.assistant - INFO - SQL executed successfully on attempt 1
+2026-08-27 15:20:12,417 - ai_powered_database_query_assistant.assistant - INFO - Generating final answer
+2026-08-27 15:20:12,725 - ai_powered_database_query_assistant.assistant - INFO - Answer generated successfully
+2026-08-27 15:20:12,725 - ai_powered_database_query_assistant.assistant - INFO - Conversation added to memory
+2026-08-27 15:20:12,726 - ai_powered_database_query_assistant.assistant - INFO - Received question: Which artist has the most tracks?
+2026-08-27 15:20:13,358 - ai_powered_database_query_assistant.assistant - INFO - Question validation passed
+2026-08-27 15:20:13,360 - ai_powered_database_query_assistant.assistant - INFO - Generating SQL
+2026-08-27 15:20:14,279 - ai_powered_database_query_assistant.assistant - INFO - Generated SQL: SELECT a.Name
+FROM Artist a
+JOIN Album al ON al.ArtistId = a.ArtistId
+JOIN Track t ON t.AlbumId = al.AlbumId
+GROUP BY a.ArtistId, a.Name
+ORDER BY COUNT(t.TrackId) DESC
+LIMIT 1;
+2026-08-27 15:20:14,279 - ai_powered_database_query_assistant.assistant - INFO - SQL execution attempt 1
+2026-08-27 15:20:14,279 - ai_powered_database_query_assistant.assistant - INFO - Executing SQL on attempt 1
+2026-08-27 15:20:14,280 - ai_powered_database_query_assistant.assistant - INFO - SQL executed successfully on attempt 1
+2026-08-27 15:20:14,280 - ai_powered_database_query_assistant.assistant - INFO - Generating final answer
+2026-08-27 15:20:14,894 - ai_powered_database_query_assistant.assistant - INFO - Answer generated successfully
+2026-08-27 15:20:14,894 - ai_powered_database_query_assistant.assistant - INFO - Conversation added to memory
+2026-08-27 15:20:14,895 - ai_powered_database_query_assistant.assistant - INFO - Received question: asdfgh
+2026-08-27 15:20:15,609 - ai_powered_database_query_assistant.assistant - WARNING - Invalid question rejected: asdfgh
+2026-08-27 15:21:34,154 - ai_powered_database_query_assistant.assistant - INFO - Received question: How many customers are there?
+2026-08-27 15:21:34,154 - ai_powered_database_query_assistant.assistant - INFO - Question validation passed
+2026-08-27 15:21:34,155 - ai_powered_database_query_assistant.assistant - INFO - Generating SQL
+2026-08-27 15:21:34,155 - ai_powered_database_query_assistant.assistant - INFO - Generated SQL: SELECT COUNT(*) FROM Customer;
+2026-08-27 15:21:34,155 - ai_powered_database_query_assistant.assistant - INFO - SQL execution attempt 1
+2026-08-27 15:21:34,155 - ai_powered_database_query_assistant.assistant - INFO - Executing SQL on attempt 1
+2026-08-27 15:21:34,155 - ai_powered_database_query_assistant.assistant - INFO - SQL executed successfully on attempt 1
+2026-08-27 15:21:34,155 - ai_powered_database_query_assistant.assistant - INFO - Generating final answer
+2026-08-27 15:21:34,155 - ai_powered_database_query_assistant.assistant - INFO - Answer generated successfully
+2026-08-27 15:21:34,155 - ai_powered_database_query_assistant.assistant - INFO - Conversation added to memory
+2026-08-27 15:21:34,156 - ai_powered_database_query_assistant.assistant - INFO - Received question: q
+2026-08-27 15:21:34,156 - ai_powered_database_query_assistant.assistant - WARNING - Invalid question rejected: q
+2026-08-27 15:21:34,158 - ai_powered_database_query_assistant.assistant - INFO - Received question: Delete all customers
+2026-08-27 15:21:34,158 - ai_powered_database_query_assistant.assistant - INFO - Question validation passed
+2026-08-27 15:21:34,158 - ai_powered_database_query_assistant.assistant - INFO - Generating SQL
+2026-08-27 15:21:34,158 - ai_powered_database_query_assistant.assistant - INFO - Generated SQL: DELETE FROM Customer;
+2026-08-27 15:21:34,158 - ai_powered_database_query_assistant.assistant - INFO - SQL execution attempt 1
+2026-08-27 15:21:34,158 - ai_powered_database_query_assistant.assistant - ERROR - SQL validation failed on attempt 1
+2026-08-27 15:21:34,160 - ai_powered_database_query_assistant.assistant - INFO - Received question: Show customers
+2026-08-27 15:21:34,160 - ai_powered_database_query_assistant.assistant - INFO - Question validation passed
+2026-08-27 15:21:34,160 - ai_powered_database_query_assistant.assistant - INFO - Generating SQL
+2026-08-27 15:21:34,160 - ai_powered_database_query_assistant.assistant - INFO - Generated SQL: SELECT * FROM Customers;
+2026-08-27 15:21:34,160 - ai_powered_database_query_assistant.assistant - INFO - SQL execution attempt 1
+2026-08-27 15:21:34,160 - ai_powered_database_query_assistant.assistant - INFO - Executing SQL on attempt 1
+2026-08-27 15:21:34,161 - ai_powered_database_query_assistant.assistant - ERROR - SQL execution failed on attempt 1: no such table: Customers
+2026-08-27 15:21:34,161 - ai_powered_database_query_assistant.assistant - INFO - Attempting to fix SQL after attempt 1
+2026-08-27 15:21:34,161 - ai_powered_database_query_assistant.assistant - INFO - Fixed SQL: SELECT * FROM Customer;
+2026-08-27 15:21:34,161 - ai_powered_database_query_assistant.assistant - INFO - SQL execution attempt 2
+2026-08-27 15:21:34,161 - ai_powered_database_query_assistant.assistant - INFO - Executing SQL on attempt 2
+2026-08-27 15:21:34,161 - ai_powered_database_query_assistant.assistant - INFO - SQL executed successfully on attempt 2
+2026-08-27 15:21:34,161 - ai_powered_database_query_assistant.assistant - INFO - Generating final answer
+2026-08-27 15:21:34,161 - ai_powered_database_query_assistant.assistant - INFO - Answer generated successfully
+2026-08-27 15:21:34,161 - ai_powered_database_query_assistant.assistant - INFO - Conversation added to memory
+2026-08-27 15:21:34,163 - ai_powered_database_query_assistant.assistant - INFO - Received question: Show something
+2026-08-27 15:21:34,163 - ai_powered_database_query_assistant.assistant - INFO - Question validation passed
+2026-08-27 15:21:34,163 - ai_powered_database_query_assistant.assistant - INFO - Generating SQL
+2026-08-27 15:21:34,163 - ai_powered_database_query_assistant.assistant - INFO - Generated SQL: SELECT * FROM WrongTable;
+2026-08-27 15:21:34,163 - ai_powered_database_query_assistant.assistant - INFO - SQL execution attempt 1
+2026-08-27 15:21:34,163 - ai_powered_database_query_assistant.assistant - INFO - Executing SQL on attempt 1
+2026-08-27 15:21:34,163 - ai_powered_database_query_assistant.assistant - ERROR - SQL execution failed on attempt 1: no such table: WrongTable
+2026-08-27 15:21:34,163 - ai_powered_database_query_assistant.assistant - INFO - Attempting to fix SQL after attempt 1
+2026-08-27 15:21:34,163 - ai_powered_database_query_assistant.assistant - INFO - Fixed SQL: SELECT * FROM AnotherWrongTable;
+2026-08-27 15:21:34,163 - ai_powered_database_query_assistant.assistant - INFO - SQL execution attempt 2
+2026-08-27 15:21:34,163 - ai_powered_database_query_assistant.assistant - INFO - Executing SQL on attempt 2
+2026-08-27 15:21:34,163 - ai_powered_database_query_assistant.assistant - ERROR - SQL execution failed on attempt 2: still invalid SQL
+2026-08-27 15:21:34,164 - ai_powered_database_query_assistant.assistant - INFO - Attempting to fix SQL after attempt 2
+2026-08-27 15:21:34,164 - ai_powered_database_query_assistant.assistant - INFO - Fixed SQL: SELECT * FROM AnotherWrongTable;
+2026-08-27 15:21:34,164 - ai_powered_database_query_assistant.assistant - INFO - SQL execution attempt 3
+2026-08-27 15:21:34,164 - ai_powered_database_query_assistant.assistant - INFO - Executing SQL on attempt 3
+2026-08-27 15:21:34,164 - ai_powered_database_query_assistant.assistant - ERROR - SQL execution failed on attempt 3: still invalid SQL
+2026-08-27 15:21:34,164 - ai_powered_database_query_assistant.assistant - ERROR - Maximum SQL retry limit reached
+2026-08-27 15:21:34,191 - ai_powered_database_query_assistant.assistant - INFO - Received question: Show something
+2026-08-27 15:21:34,191 - ai_powered_database_query_assistant.assistant - INFO - Question validation passed
+2026-08-27 15:21:34,191 - ai_powered_database_query_assistant.assistant - INFO - Generating SQL
+2026-08-27 15:21:34,191 - ai_powered_database_query_assistant.assistant - INFO - Generated SQL: SELECT * FROM WrongTable;
+2026-08-27 15:21:34,191 - ai_powered_database_query_assistant.assistant - INFO - SQL execution attempt 1
+2026-08-27 15:21:34,191 - ai_powered_database_query_assistant.assistant - INFO - Executing SQL on attempt 1
+2026-08-27 15:21:34,191 - ai_powered_database_query_assistant.assistant - ERROR - SQL execution failed on attempt 1: no such table: WrongTable
+2026-08-27 15:21:34,192 - ai_powered_database_query_assistant.assistant - INFO - Attempting to fix SQL after attempt 1
+2026-08-27 15:21:34,192 - ai_powered_database_query_assistant.assistant - INFO - Fixed SQL: SELECT * FROM CorrectTable;
+2026-08-27 15:21:34,192 - ai_powered_database_query_assistant.assistant - INFO - SQL execution attempt 2
+2026-08-27 15:21:34,192 - ai_powered_database_query_assistant.assistant - INFO - Executing SQL on attempt 2
+2026-08-27 15:21:34,192 - ai_powered_database_query_assistant.assistant - INFO - SQL executed successfully on attempt 2
+2026-08-27 15:21:34,192 - ai_powered_database_query_assistant.assistant - INFO - Generating final answer
+2026-08-27 15:21:34,192 - ai_powered_database_query_assistant.assistant - INFO - Answer generated successfully
+2026-08-27 15:21:34,192 - ai_powered_database_query_assistant.assistant - INFO - Conversation added to memory
+2026-08-27 15:21:34,194 - ai_powered_database_query_assistant.assistant - INFO - Received question: Show something
+2026-08-27 15:21:34,194 - ai_powered_database_query_assistant.assistant - INFO - Question validation passed
+2026-08-27 15:21:34,194 - ai_powered_database_query_assistant.assistant - INFO - Generating SQL
+2026-08-27 15:21:34,194 - ai_powered_database_query_assistant.assistant - INFO - Generated SQL: SELECT * FROM WrongTable;
+2026-08-27 15:21:34,194 - ai_powered_database_query_assistant.assistant - INFO - SQL execution attempt 1
+2026-08-27 15:21:34,194 - ai_powered_database_query_assistant.assistant - INFO - Executing SQL on attempt 1
+2026-08-27 15:21:34,194 - ai_powered_database_query_assistant.assistant - ERROR - SQL execution failed on attempt 1: SQL execution failed
+2026-08-27 15:21:34,194 - ai_powered_database_query_assistant.assistant - INFO - Attempting to fix SQL after attempt 1
+2026-08-27 15:21:34,194 - ai_powered_database_query_assistant.assistant - INFO - Fixed SQL: SELECT * FROM StillWrongTable;
+2026-08-27 15:21:34,194 - ai_powered_database_query_assistant.assistant - INFO - SQL execution attempt 2
+2026-08-27 15:21:34,194 - ai_powered_database_query_assistant.assistant - INFO - Executing SQL on attempt 2
+2026-08-27 15:21:34,194 - ai_powered_database_query_assistant.assistant - ERROR - SQL execution failed on attempt 2: SQL execution failed
+2026-08-27 15:21:34,195 - ai_powered_database_query_assistant.assistant - INFO - Attempting to fix SQL after attempt 2
+2026-08-27 15:21:34,195 - ai_powered_database_query_assistant.assistant - INFO - Fixed SQL: SELECT * FROM StillWrongTable;
+2026-08-27 15:21:34,195 - ai_powered_database_query_assistant.assistant - INFO - SQL execution attempt 3
+2026-08-27 15:21:34,195 - ai_powered_database_query_assistant.assistant - INFO - Executing SQL on attempt 3
+2026-08-27 15:21:34,195 - ai_powered_database_query_assistant.assistant - ERROR - SQL execution failed on attempt 3: SQL execution failed
+2026-08-27 15:21:34,195 - ai_powered_database_query_assistant.assistant - ERROR - Maximum SQL retry limit reached
+2026-08-27 15:24:02,905 - ai_powered_database_query_assistant.assistant - INFO - Received question: How many customers are there?
+2026-08-27 15:24:02,906 - ai_powered_database_query_assistant.assistant - INFO - Question validation passed
+2026-08-27 15:24:02,906 - ai_powered_database_query_assistant.assistant - INFO - Generating SQL
+2026-08-27 15:24:02,906 - ai_powered_database_query_assistant.assistant - INFO - Generated SQL: SELECT COUNT(*) FROM Customer;
+2026-08-27 15:24:02,906 - ai_powered_database_query_assistant.assistant - INFO - SQL execution attempt 1
+2026-08-27 15:24:02,906 - ai_powered_database_query_assistant.assistant - INFO - Executing SQL on attempt 1
+2026-08-27 15:24:02,906 - ai_powered_database_query_assistant.assistant - INFO - SQL executed successfully on attempt 1
+2026-08-27 15:24:02,906 - ai_powered_database_query_assistant.assistant - INFO - Generating final answer
+2026-08-27 15:24:02,906 - ai_powered_database_query_assistant.assistant - INFO - Answer generated successfully
+2026-08-27 15:24:02,906 - ai_powered_database_query_assistant.assistant - INFO - Conversation added to memory
+2026-08-27 15:24:02,908 - ai_powered_database_query_assistant.assistant - INFO - Received question: q
+2026-08-27 15:24:02,908 - ai_powered_database_query_assistant.assistant - WARNING - Invalid question rejected: q
+2026-08-27 15:24:02,909 - ai_powered_database_query_assistant.assistant - INFO - Received question: Delete all customers
+2026-08-27 15:24:02,910 - ai_powered_database_query_assistant.assistant - INFO - Question validation passed
+2026-08-27 15:24:02,910 - ai_powered_database_query_assistant.assistant - INFO - Generating SQL
+2026-08-27 15:24:02,910 - ai_powered_database_query_assistant.assistant - INFO - Generated SQL: DELETE FROM Customer;
+2026-08-27 15:24:02,910 - ai_powered_database_query_assistant.assistant - INFO - SQL execution attempt 1
+2026-08-27 15:24:02,910 - ai_powered_database_query_assistant.assistant - ERROR - SQL validation failed on attempt 1
+2026-08-27 15:24:02,912 - ai_powered_database_query_assistant.assistant - INFO - Received question: Show customers
+2026-08-27 15:24:02,912 - ai_powered_database_query_assistant.assistant - INFO - Question validation passed
+2026-08-27 15:24:02,912 - ai_powered_database_query_assistant.assistant - INFO - Generating SQL
+2026-08-27 15:24:02,912 - ai_powered_database_query_assistant.assistant - INFO - Generated SQL: SELECT * FROM Customers;
+2026-08-27 15:24:02,912 - ai_powered_database_query_assistant.assistant - INFO - SQL execution attempt 1
+2026-08-27 15:24:02,912 - ai_powered_database_query_assistant.assistant - INFO - Executing SQL on attempt 1
+2026-08-27 15:24:02,912 - ai_powered_database_query_assistant.assistant - ERROR - SQL execution failed on attempt 1: no such table: Customers
+2026-08-27 15:24:02,912 - ai_powered_database_query_assistant.assistant - INFO - Attempting to fix SQL after attempt 1
+2026-08-27 15:24:02,912 - ai_powered_database_query_assistant.assistant - INFO - Fixed SQL: SELECT * FROM Customer;
+2026-08-27 15:24:02,912 - ai_powered_database_query_assistant.assistant - INFO - SQL execution attempt 2
+2026-08-27 15:24:02,912 - ai_powered_database_query_assistant.assistant - INFO - Executing SQL on attempt 2
+2026-08-27 15:24:02,912 - ai_powered_database_query_assistant.assistant - INFO - SQL executed successfully on attempt 2
+2026-08-27 15:24:02,912 - ai_powered_database_query_assistant.assistant - INFO - Generating final answer
+2026-08-27 15:24:02,913 - ai_powered_database_query_assistant.assistant - INFO - Answer generated successfully
+2026-08-27 15:24:02,913 - ai_powered_database_query_assistant.assistant - INFO - Conversation added to memory
+2026-08-27 15:24:02,914 - ai_powered_database_query_assistant.assistant - INFO - Received question: Show something
+2026-08-27 15:24:02,914 - ai_powered_database_query_assistant.assistant - INFO - Question validation passed
+2026-08-27 15:24:02,914 - ai_powered_database_query_assistant.assistant - INFO - Generating SQL
+2026-08-27 15:24:02,914 - ai_powered_database_query_assistant.assistant - INFO - Generated SQL: SELECT * FROM WrongTable;
+2026-08-27 15:24:02,914 - ai_powered_database_query_assistant.assistant - INFO - SQL execution attempt 1
+2026-08-27 15:24:02,914 - ai_powered_database_query_assistant.assistant - INFO - Executing SQL on attempt 1
+2026-08-27 15:24:02,914 - ai_powered_database_query_assistant.assistant - ERROR - SQL execution failed on attempt 1: no such table: WrongTable
+2026-08-27 15:24:02,915 - ai_powered_database_query_assistant.assistant - INFO - Attempting to fix SQL after attempt 1
+2026-08-27 15:24:02,915 - ai_powered_database_query_assistant.assistant - INFO - Fixed SQL: SELECT * FROM AnotherWrongTable;
+2026-08-27 15:24:02,915 - ai_powered_database_query_assistant.assistant - INFO - SQL execution attempt 2
+2026-08-27 15:24:02,915 - ai_powered_database_query_assistant.assistant - INFO - Executing SQL on attempt 2
+2026-08-27 15:24:02,915 - ai_powered_database_query_assistant.assistant - ERROR - SQL execution failed on attempt 2: still invalid SQL
+2026-08-27 15:24:02,915 - ai_powered_database_query_assistant.assistant - INFO - Attempting to fix SQL after attempt 2
+2026-08-27 15:24:02,915 - ai_powered_database_query_assistant.assistant - INFO - Fixed SQL: SELECT * FROM AnotherWrongTable;
+2026-08-27 15:24:02,915 - ai_powered_database_query_assistant.assistant - INFO - SQL execution attempt 3
+2026-08-27 15:24:02,915 - ai_powered_database_query_assistant.assistant - INFO - Executing SQL on attempt 3
+2026-08-27 15:24:02,915 - ai_powered_database_query_assistant.assistant - ERROR - SQL execution failed on attempt 3: still invalid SQL
+2026-08-27 15:24:02,915 - ai_powered_database_query_assistant.assistant - ERROR - Maximum SQL retry limit reached
+2026-08-27 15:24:02,942 - ai_powered_database_query_assistant.assistant - INFO - Received question: Show something
+2026-08-27 15:24:02,942 - ai_powered_database_query_assistant.assistant - INFO - Question validation passed
+2026-08-27 15:24:02,942 - ai_powered_database_query_assistant.assistant - INFO - Generating SQL
+2026-08-27 15:24:02,942 - ai_powered_database_query_assistant.assistant - INFO - Generated SQL: SELECT * FROM WrongTable;
+2026-08-27 15:24:02,942 - ai_powered_database_query_assistant.assistant - INFO - SQL execution attempt 1
+2026-08-27 15:24:02,942 - ai_powered_database_query_assistant.assistant - INFO - Executing SQL on attempt 1
+2026-08-27 15:24:02,943 - ai_powered_database_query_assistant.assistant - ERROR - SQL execution failed on attempt 1: no such table: WrongTable
+2026-08-27 15:24:02,943 - ai_powered_database_query_assistant.assistant - INFO - Attempting to fix SQL after attempt 1
+2026-08-27 15:24:02,943 - ai_powered_database_query_assistant.assistant - INFO - Fixed SQL: SELECT * FROM CorrectTable;
+2026-08-27 15:24:02,943 - ai_powered_database_query_assistant.assistant - INFO - SQL execution attempt 2
+2026-08-27 15:24:02,943 - ai_powered_database_query_assistant.assistant - INFO - Executing SQL on attempt 2
+2026-08-27 15:24:02,943 - ai_powered_database_query_assistant.assistant - INFO - SQL executed successfully on attempt 2
+2026-08-27 15:24:02,943 - ai_powered_database_query_assistant.assistant - INFO - Generating final answer
+2026-08-27 15:24:02,943 - ai_powered_database_query_assistant.assistant - INFO - Answer generated successfully
+2026-08-27 15:24:02,943 - ai_powered_database_query_assistant.assistant - INFO - Conversation added to memory
+2026-08-27 15:24:02,945 - ai_powered_database_query_assistant.assistant - INFO - Received question: Show something
+2026-08-27 15:24:02,945 - ai_powered_database_query_assistant.assistant - INFO - Question validation passed
+2026-08-27 15:24:02,945 - ai_powered_database_query_assistant.assistant - INFO - Generating SQL
+2026-08-27 15:24:02,945 - ai_powered_database_query_assistant.assistant - INFO - Generated SQL: SELECT * FROM WrongTable;
+2026-08-27 15:24:02,945 - ai_powered_database_query_assistant.assistant - INFO - SQL execution attempt 1
+2026-08-27 15:24:02,945 - ai_powered_database_query_assistant.assistant - INFO - Executing SQL on attempt 1
+2026-08-27 15:24:02,945 - ai_powered_database_query_assistant.assistant - ERROR - SQL execution failed on attempt 1: SQL execution failed
+2026-08-27 15:24:02,945 - ai_powered_database_query_assistant.assistant - INFO - Attempting to fix SQL after attempt 1
+2026-08-27 15:24:02,945 - ai_powered_database_query_assistant.assistant - INFO - Fixed SQL: SELECT * FROM StillWrongTable;
+2026-08-27 15:24:02,945 - ai_powered_database_query_assistant.assistant - INFO - SQL execution attempt 2
+2026-08-27 15:24:02,945 - ai_powered_database_query_assistant.assistant - INFO - Executing SQL on attempt 2
+2026-08-27 15:24:02,945 - ai_powered_database_query_assistant.assistant - ERROR - SQL execution failed on attempt 2: SQL execution failed
+2026-08-27 15:24:02,945 - ai_powered_database_query_assistant.assistant - INFO - Attempting to fix SQL after attempt 2
+2026-08-27 15:24:02,945 - ai_powered_database_query_assistant.assistant - INFO - Fixed SQL: SELECT * FROM StillWrongTable;
+2026-08-27 15:24:02,945 - ai_powered_database_query_assistant.assistant - INFO - SQL execution attempt 3
+2026-08-27 15:24:02,945 - ai_powered_database_query_assistant.assistant - INFO - Executing SQL on attempt 3
+2026-08-27 15:24:02,946 - ai_powered_database_query_assistant.assistant - ERROR - SQL execution failed on attempt 3: SQL execution failed
+2026-08-27 15:24:02,946 - ai_powered_database_query_assistant.assistant - ERROR - Maximum SQL retry limit reached
+2026-08-27 19:43:20,513 - ai_powered_database_query_assistant.assistant - INFO - Received question: How many customers are there?
+2026-08-27 19:43:20,514 - ai_powered_database_query_assistant.assistant - INFO - Question validation passed
+2026-08-27 19:43:20,514 - ai_powered_database_query_assistant.assistant - INFO - Generating SQL
+2026-08-27 19:43:20,514 - ai_powered_database_query_assistant.assistant - INFO - Generated SQL: SELECT COUNT(*) FROM Customer;
+2026-08-27 19:43:20,514 - ai_powered_database_query_assistant.assistant - INFO - SQL execution attempt 1
+2026-08-27 19:43:20,514 - ai_powered_database_query_assistant.assistant - INFO - Executing SQL on attempt 1
+2026-08-27 19:43:20,514 - ai_powered_database_query_assistant.assistant - INFO - SQL executed successfully on attempt 1
+2026-08-27 19:43:20,514 - ai_powered_database_query_assistant.assistant - INFO - Generating final answer
+2026-08-27 19:43:20,514 - ai_powered_database_query_assistant.assistant - INFO - Answer generated successfully
+2026-08-27 19:43:20,514 - ai_powered_database_query_assistant.assistant - INFO - Conversation added to memory
+2026-08-27 19:43:20,516 - ai_powered_database_query_assistant.assistant - INFO - Received question: q
+2026-08-27 19:43:20,516 - ai_powered_database_query_assistant.assistant - WARNING - Invalid question rejected: q
+2026-08-27 19:43:20,517 - ai_powered_database_query_assistant.assistant - INFO - Received question: Delete all customers
+2026-08-27 19:43:20,517 - ai_powered_database_query_assistant.assistant - INFO - Question validation passed
+2026-08-27 19:43:20,518 - ai_powered_database_query_assistant.assistant - INFO - Generating SQL
+2026-08-27 19:43:20,518 - ai_powered_database_query_assistant.assistant - INFO - Generated SQL: DELETE FROM Customer;
+2026-08-27 19:43:20,518 - ai_powered_database_query_assistant.assistant - INFO - SQL execution attempt 1
+2026-08-27 19:43:20,518 - ai_powered_database_query_assistant.assistant - ERROR - SQL validation failed on attempt 1
+2026-08-27 19:43:20,520 - ai_powered_database_query_assistant.assistant - INFO - Received question: Show customers
+2026-08-27 19:43:20,520 - ai_powered_database_query_assistant.assistant - INFO - Question validation passed
+2026-08-27 19:43:20,520 - ai_powered_database_query_assistant.assistant - INFO - Generating SQL
+2026-08-27 19:43:20,520 - ai_powered_database_query_assistant.assistant - INFO - Generated SQL: SELECT * FROM Customers;
+2026-08-27 19:43:20,520 - ai_powered_database_query_assistant.assistant - INFO - SQL execution attempt 1
+2026-08-27 19:43:20,521 - ai_powered_database_query_assistant.assistant - INFO - Executing SQL on attempt 1
+2026-08-27 19:43:20,521 - ai_powered_database_query_assistant.assistant - ERROR - SQL execution failed on attempt 1: no such table: Customers
+2026-08-27 19:43:20,521 - ai_powered_database_query_assistant.assistant - INFO - Attempting to fix SQL after attempt 1
+2026-08-27 19:43:20,521 - ai_powered_database_query_assistant.assistant - INFO - Fixed SQL: SELECT * FROM Customer;
+2026-08-27 19:43:20,521 - ai_powered_database_query_assistant.assistant - INFO - SQL execution attempt 2
+2026-08-27 19:43:20,521 - ai_powered_database_query_assistant.assistant - INFO - Executing SQL on attempt 2
+2026-08-27 19:43:20,521 - ai_powered_database_query_assistant.assistant - INFO - SQL executed successfully on attempt 2
+2026-08-27 19:43:20,521 - ai_powered_database_query_assistant.assistant - INFO - Generating final answer
+2026-08-27 19:43:20,521 - ai_powered_database_query_assistant.assistant - INFO - Answer generated successfully
+2026-08-27 19:43:20,521 - ai_powered_database_query_assistant.assistant - INFO - Conversation added to memory
+2026-08-27 19:43:20,523 - ai_powered_database_query_assistant.assistant - INFO - Received question: Show something
+2026-08-27 19:43:20,523 - ai_powered_database_query_assistant.assistant - INFO - Question validation passed
+2026-08-27 19:43:20,523 - ai_powered_database_query_assistant.assistant - INFO - Generating SQL
+2026-08-27 19:43:20,523 - ai_powered_database_query_assistant.assistant - INFO - Generated SQL: SELECT * FROM WrongTable;
+2026-08-27 19:43:20,523 - ai_powered_database_query_assistant.assistant - INFO - SQL execution attempt 1
+2026-08-27 19:43:20,523 - ai_powered_database_query_assistant.assistant - INFO - Executing SQL on attempt 1
+2026-08-27 19:43:20,523 - ai_powered_database_query_assistant.assistant - ERROR - SQL execution failed on attempt 1: no such table: WrongTable
+2026-08-27 19:43:20,523 - ai_powered_database_query_assistant.assistant - INFO - Attempting to fix SQL after attempt 1
+2026-08-27 19:43:20,523 - ai_powered_database_query_assistant.assistant - INFO - Fixed SQL: SELECT * FROM AnotherWrongTable;
+2026-08-27 19:43:20,524 - ai_powered_database_query_assistant.assistant - INFO - SQL execution attempt 2
+2026-08-27 19:43:20,524 - ai_powered_database_query_assistant.assistant - INFO - Executing SQL on attempt 2
+2026-08-27 19:43:20,524 - ai_powered_database_query_assistant.assistant - ERROR - SQL execution failed on attempt 2: still invalid SQL
+2026-08-27 19:43:20,524 - ai_powered_database_query_assistant.assistant - INFO - Attempting to fix SQL after attempt 2
+2026-08-27 19:43:20,524 - ai_powered_database_query_assistant.assistant - INFO - Fixed SQL: SELECT * FROM AnotherWrongTable;
+2026-08-27 19:43:20,524 - ai_powered_database_query_assistant.assistant - INFO - SQL execution attempt 3
+2026-08-27 19:43:20,524 - ai_powered_database_query_assistant.assistant - INFO - Executing SQL on attempt 3
+2026-08-27 19:43:20,524 - ai_powered_database_query_assistant.assistant - ERROR - SQL execution failed on attempt 3: still invalid SQL
+2026-08-27 19:43:20,524 - ai_powered_database_query_assistant.assistant - ERROR - Maximum SQL retry limit reached
+2026-08-27 19:43:20,551 - ai_powered_database_query_assistant.assistant - INFO - Received question: Show something
+2026-08-27 19:43:20,551 - ai_powered_database_query_assistant.assistant - INFO - Question validation passed
+2026-08-27 19:43:20,551 - ai_powered_database_query_assistant.assistant - INFO - Generating SQL
+2026-08-27 19:43:20,551 - ai_powered_database_query_assistant.assistant - INFO - Generated SQL: SELECT * FROM WrongTable;
+2026-08-27 19:43:20,551 - ai_powered_database_query_assistant.assistant - INFO - SQL execution attempt 1
+2026-08-27 19:43:20,551 - ai_powered_database_query_assistant.assistant - INFO - Executing SQL on attempt 1
+2026-08-27 19:43:20,551 - ai_powered_database_query_assistant.assistant - ERROR - SQL execution failed on attempt 1: no such table: WrongTable
+2026-08-27 19:43:20,551 - ai_powered_database_query_assistant.assistant - INFO - Attempting to fix SQL after attempt 1
+2026-08-27 19:43:20,551 - ai_powered_database_query_assistant.assistant - INFO - Fixed SQL: SELECT * FROM CorrectTable;
+2026-08-27 19:43:20,551 - ai_powered_database_query_assistant.assistant - INFO - SQL execution attempt 2
+2026-08-27 19:43:20,551 - ai_powered_database_query_assistant.assistant - INFO - Executing SQL on attempt 2
+2026-08-27 19:43:20,551 - ai_powered_database_query_assistant.assistant - INFO - SQL executed successfully on attempt 2
+2026-08-27 19:43:20,551 - ai_powered_database_query_assistant.assistant - INFO - Generating final answer
+2026-08-27 19:43:20,551 - ai_powered_database_query_assistant.assistant - INFO - Answer generated successfully
+2026-08-27 19:43:20,552 - ai_powered_database_query_assistant.assistant - INFO - Conversation added to memory
+2026-08-27 19:43:20,554 - ai_powered_database_query_assistant.assistant - INFO - Received question: Show something
+2026-08-27 19:43:20,554 - ai_powered_database_query_assistant.assistant - INFO - Question validation passed
+2026-08-27 19:43:20,554 - ai_powered_database_query_assistant.assistant - INFO - Generating SQL
+2026-08-27 19:43:20,554 - ai_powered_database_query_assistant.assistant - INFO - Generated SQL: SELECT * FROM WrongTable;
+2026-08-27 19:43:20,554 - ai_powered_database_query_assistant.assistant - INFO - SQL execution attempt 1
+2026-08-27 19:43:20,554 - ai_powered_database_query_assistant.assistant - INFO - Executing SQL on attempt 1
+2026-08-27 19:43:20,554 - ai_powered_database_query_assistant.assistant - ERROR - SQL execution failed on attempt 1: SQL execution failed
+2026-08-27 19:43:20,554 - ai_powered_database_query_assistant.assistant - INFO - Attempting to fix SQL after attempt 1
+2026-08-27 19:43:20,554 - ai_powered_database_query_assistant.assistant - INFO - Fixed SQL: SELECT * FROM StillWrongTable;
+2026-08-27 19:43:20,554 - ai_powered_database_query_assistant.assistant - INFO - SQL execution attempt 2
+2026-08-27 19:43:20,554 - ai_powered_database_query_assistant.assistant - INFO - Executing SQL on attempt 2
+2026-08-27 19:43:20,554 - ai_powered_database_query_assistant.assistant - ERROR - SQL execution failed on attempt 2: SQL execution failed
+2026-08-27 19:43:20,554 - ai_powered_database_query_assistant.assistant - INFO - Attempting to fix SQL after attempt 2
+2026-08-27 19:43:20,554 - ai_powered_database_query_assistant.assistant - INFO - Fixed SQL: SELECT * FROM StillWrongTable;
+2026-08-27 19:43:20,554 - ai_powered_database_query_assistant.assistant - INFO - SQL execution attempt 3
+2026-08-27 19:43:20,555 - ai_powered_database_query_assistant.assistant - INFO - Executing SQL on attempt 3
+2026-08-27 19:43:20,555 - ai_powered_database_query_assistant.assistant - ERROR - SQL execution failed on attempt 3: SQL execution failed
+2026-08-27 19:43:20,555 - ai_powered_database_query_assistant.assistant - ERROR - Maximum SQL retry limit reached
+2026-08-27 19:44:22,164 - ai_powered_database_query_assistant.assistant - INFO - Received question: How many customers are there?
+2026-08-27 19:44:22,164 - ai_powered_database_query_assistant.assistant - INFO - Question validation passed
+2026-08-27 19:44:22,164 - ai_powered_database_query_assistant.assistant - INFO - Generating SQL
+2026-08-27 19:44:22,164 - ai_powered_database_query_assistant.assistant - INFO - Generated SQL: SELECT COUNT(*) FROM Customer;
+2026-08-27 19:44:22,164 - ai_powered_database_query_assistant.assistant - INFO - SQL execution attempt 1
+2026-08-27 19:44:22,164 - ai_powered_database_query_assistant.assistant - INFO - Executing SQL on attempt 1
+2026-08-27 19:44:22,164 - ai_powered_database_query_assistant.assistant - INFO - SQL executed successfully on attempt 1
+2026-08-27 19:44:22,164 - ai_powered_database_query_assistant.assistant - INFO - Generating final answer
+2026-08-27 19:44:22,164 - ai_powered_database_query_assistant.assistant - INFO - Answer generated successfully
+2026-08-27 19:44:22,164 - ai_powered_database_query_assistant.assistant - INFO - Conversation added to memory
+2026-08-27 19:44:22,166 - ai_powered_database_query_assistant.assistant - INFO - Received question: q
+2026-08-27 19:44:22,166 - ai_powered_database_query_assistant.assistant - WARNING - Invalid question rejected: q
+2026-08-27 19:44:22,167 - ai_powered_database_query_assistant.assistant - INFO - Received question: Delete all customers
+2026-08-27 19:44:22,167 - ai_powered_database_query_assistant.assistant - INFO - Question validation passed
+2026-08-27 19:44:22,167 - ai_powered_database_query_assistant.assistant - INFO - Generating SQL
+2026-08-27 19:44:22,167 - ai_powered_database_query_assistant.assistant - INFO - Generated SQL: DELETE FROM Customer;
+2026-08-27 19:44:22,168 - ai_powered_database_query_assistant.assistant - INFO - SQL execution attempt 1
+2026-08-27 19:44:22,168 - ai_powered_database_query_assistant.assistant - ERROR - SQL validation failed on attempt 1
+2026-08-27 19:44:22,170 - ai_powered_database_query_assistant.assistant - INFO - Received question: Show customers
+2026-08-27 19:44:22,170 - ai_powered_database_query_assistant.assistant - INFO - Question validation passed
+2026-08-27 19:44:22,170 - ai_powered_database_query_assistant.assistant - INFO - Generating SQL
+2026-08-27 19:44:22,170 - ai_powered_database_query_assistant.assistant - INFO - Generated SQL: SELECT * FROM Customers;
+2026-08-27 19:44:22,170 - ai_powered_database_query_assistant.assistant - INFO - SQL execution attempt 1
+2026-08-27 19:44:22,170 - ai_powered_database_query_assistant.assistant - INFO - Executing SQL on attempt 1
+2026-08-27 19:44:22,170 - ai_powered_database_query_assistant.assistant - ERROR - SQL execution failed on attempt 1: no such table: Customers
+2026-08-27 19:44:22,170 - ai_powered_database_query_assistant.assistant - INFO - Attempting to fix SQL after attempt 1
+2026-08-27 19:44:22,171 - ai_powered_database_query_assistant.assistant - INFO - Fixed SQL: SELECT * FROM Customer;
+2026-08-27 19:44:22,171 - ai_powered_database_query_assistant.assistant - INFO - SQL execution attempt 2
+2026-08-27 19:44:22,171 - ai_powered_database_query_assistant.assistant - INFO - Executing SQL on attempt 2
+2026-08-27 19:44:22,171 - ai_powered_database_query_assistant.assistant - INFO - SQL executed successfully on attempt 2
+2026-08-27 19:44:22,171 - ai_powered_database_query_assistant.assistant - INFO - Generating final answer
+2026-08-27 19:44:22,171 - ai_powered_database_query_assistant.assistant - INFO - Answer generated successfully
+2026-08-27 19:44:22,171 - ai_powered_database_query_assistant.assistant - INFO - Conversation added to memory
+2026-08-27 19:44:22,173 - ai_powered_database_query_assistant.assistant - INFO - Received question: Show something
+2026-08-27 19:44:22,173 - ai_powered_database_query_assistant.assistant - INFO - Question validation passed
+2026-08-27 19:44:22,173 - ai_powered_database_query_assistant.assistant - INFO - Generating SQL
+2026-08-27 19:44:22,173 - ai_powered_database_query_assistant.assistant - INFO - Generated SQL: SELECT * FROM WrongTable;
+2026-08-27 19:44:22,173 - ai_powered_database_query_assistant.assistant - INFO - SQL execution attempt 1
+2026-08-27 19:44:22,173 - ai_powered_database_query_assistant.assistant - INFO - Executing SQL on attempt 1
+2026-08-27 19:44:22,173 - ai_powered_database_query_assistant.assistant - ERROR - SQL execution failed on attempt 1: no such table: WrongTable
+2026-08-27 19:44:22,173 - ai_powered_database_query_assistant.assistant - INFO - Attempting to fix SQL after attempt 1
+2026-08-27 19:44:22,173 - ai_powered_database_query_assistant.assistant - INFO - Fixed SQL: SELECT * FROM AnotherWrongTable;
+2026-08-27 19:44:22,173 - ai_powered_database_query_assistant.assistant - INFO - SQL execution attempt 2
+2026-08-27 19:44:22,173 - ai_powered_database_query_assistant.assistant - INFO - Executing SQL on attempt 2
+2026-08-27 19:44:22,173 - ai_powered_database_query_assistant.assistant - ERROR - SQL execution failed on attempt 2: still invalid SQL
+2026-08-27 19:44:22,173 - ai_powered_database_query_assistant.assistant - INFO - Attempting to fix SQL after attempt 2
+2026-08-27 19:44:22,174 - ai_powered_database_query_assistant.assistant - INFO - Fixed SQL: SELECT * FROM AnotherWrongTable;
+2026-08-27 19:44:22,174 - ai_powered_database_query_assistant.assistant - INFO - SQL execution attempt 3
+2026-08-27 19:44:22,174 - ai_powered_database_query_assistant.assistant - INFO - Executing SQL on attempt 3
+2026-08-27 19:44:22,174 - ai_powered_database_query_assistant.assistant - ERROR - SQL execution failed on attempt 3: still invalid SQL
+2026-08-27 19:44:22,174 - ai_powered_database_query_assistant.assistant - ERROR - Maximum SQL retry limit reached
+2026-08-27 19:44:22,176 - ai_powered_database_query_assistant.assistant - INFO - Received question: Show something
+2026-08-27 19:44:22,176 - ai_powered_database_query_assistant.assistant - INFO - Question validation passed
+2026-08-27 19:44:22,176 - ai_powered_database_query_assistant.assistant - INFO - Generating SQL
+2026-08-27 19:44:22,176 - ai_powered_database_query_assistant.assistant - INFO - Generated SQL: SELECT * FROM WrongTable;
+2026-08-27 19:44:22,176 - ai_powered_database_query_assistant.assistant - INFO - SQL execution attempt 1
+2026-08-27 19:44:22,176 - ai_powered_database_query_assistant.assistant - INFO - Executing SQL on attempt 1
+2026-08-27 19:44:22,176 - ai_powered_database_query_assistant.assistant - ERROR - SQL execution failed on attempt 1: no such table: WrongTable
+2026-08-27 19:44:22,176 - ai_powered_database_query_assistant.assistant - INFO - Attempting to fix SQL after attempt 1
+2026-08-27 19:44:22,176 - ai_powered_database_query_assistant.assistant - INFO - Fixed SQL: SELECT * FROM CorrectTable;
+2026-08-27 19:44:22,176 - ai_powered_database_query_assistant.assistant - INFO - SQL execution attempt 2
+2026-08-27 19:44:22,176 - ai_powered_database_query_assistant.assistant - INFO - Executing SQL on attempt 2
+2026-08-27 19:44:22,177 - ai_powered_database_query_assistant.assistant - INFO - SQL executed successfully on attempt 2
+2026-08-27 19:44:22,177 - ai_powered_database_query_assistant.assistant - INFO - Generating final answer
+2026-08-27 19:44:22,177 - ai_powered_database_query_assistant.assistant - INFO - Answer generated successfully
+2026-08-27 19:44:22,177 - ai_powered_database_query_assistant.assistant - INFO - Conversation added to memory
+2026-08-27 19:44:22,179 - ai_powered_database_query_assistant.assistant - INFO - Received question: Show something
+2026-08-27 19:44:22,179 - ai_powered_database_query_assistant.assistant - INFO - Question validation passed
+2026-08-27 19:44:22,179 - ai_powered_database_query_assistant.assistant - INFO - Generating SQL
+2026-08-27 19:44:22,179 - ai_powered_database_query_assistant.assistant - INFO - Generated SQL: SELECT * FROM WrongTable;
+2026-08-27 19:44:22,179 - ai_powered_database_query_assistant.assistant - INFO - SQL execution attempt 1
+2026-08-27 19:44:22,179 - ai_powered_database_query_assistant.assistant - INFO - Executing SQL on attempt 1
+2026-08-27 19:44:22,179 - ai_powered_database_query_assistant.assistant - ERROR - SQL execution failed on attempt 1: SQL execution failed
+2026-08-27 19:44:22,179 - ai_powered_database_query_assistant.assistant - INFO - Attempting to fix SQL after attempt 1
+2026-08-27 19:44:22,180 - ai_powered_database_query_assistant.assistant - INFO - Fixed SQL: SELECT * FROM StillWrongTable;
+2026-08-27 19:44:22,180 - ai_powered_database_query_assistant.assistant - INFO - SQL execution attempt 2
+2026-08-27 19:44:22,180 - ai_powered_database_query_assistant.assistant - INFO - Executing SQL on attempt 2
+2026-08-27 19:44:22,180 - ai_powered_database_query_assistant.assistant - ERROR - SQL execution failed on attempt 2: SQL execution failed
+2026-08-27 19:44:22,180 - ai_powered_database_query_assistant.assistant - INFO - Attempting to fix SQL after attempt 2
+2026-08-27 19:44:22,180 - ai_powered_database_query_assistant.assistant - INFO - Fixed SQL: SELECT * FROM StillWrongTable;
+2026-08-27 19:44:22,180 - ai_powered_database_query_assistant.assistant - INFO - SQL execution attempt 3
+2026-08-27 19:44:22,180 - ai_powered_database_query_assistant.assistant - INFO - Executing SQL on attempt 3
+2026-08-27 19:44:22,180 - ai_powered_database_query_assistant.assistant - ERROR - SQL execution failed on attempt 3: SQL execution failed
+2026-08-27 19:44:22,180 - ai_powered_database_query_assistant.assistant - ERROR - Maximum SQL retry limit reached

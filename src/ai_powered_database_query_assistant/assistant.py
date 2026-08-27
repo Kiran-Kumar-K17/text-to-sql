@@ -11,6 +11,7 @@ from ai_powered_database_query_assistant.models import SQLResponse
 from ai_powered_database_query_assistant.memory import ConversationMemory
 from ai_powered_database_query_assistant.question_validator import validate_question
 from ai_powered_database_query_assistant.logger import get_logger
+from ai_powered_database_query_assistant.config import MAX_SQL_RETRIES
 
 
 class SQLAssistant:
@@ -22,11 +23,13 @@ class SQLAssistant:
         self.memory = ConversationMemory()
         self.logger = get_logger(__name__)
 
-    def ask(self, question: str) -> dict:
+    def ask(self, question: str) -> SQLResponse:
 
         self.logger.info(f"Received question: {question}")
 
+        # Validate question
         if not validate_question(question, self.llm):
+
             self.logger.warning(f"Invalid question rejected: {question}")
 
             return SQLResponse(
@@ -36,91 +39,135 @@ class SQLAssistant:
                 success=False,
                 error="Invalid or unclear question.",
             )
+
         self.logger.info("Question validation passed")
+
+        # Get conversation context
         context = self.memory.get_context()
 
-        self.logger.info("Generating SQL")
         # Generate SQL
+        self.logger.info("Generating SQL")
+
         sql = generate_sql(
-            question=question, schema=self.schema, llm=self.llm, context=context
+            question=question,
+            schema=self.schema,
+            llm=self.llm,
+            context=context,
         )
+
         self.logger.info(f"Generated SQL: {sql}")
+
         original_sql = sql
-        was_fixed = False
-
-        # Validate SQL
-        if not validate_sql(sql):
-            self.logger.warning("Generated SQL failed validation")
-            return SQLResponse(
-                question=question,
-                sql=sql,
-                answer="Generated SQL was unsafe or invalid.",
-                success=False,
-                error="SQL validation failed.",
-            )
-
         final_sql = sql
+
         result = None
-        self.logger.info("SQL validation passed")
-        try:
-            self.logger.info("Executing SQL")
-            # First execution attempt
-            result = execute_sql(db=self.db, sql_query=sql)
-            self.logger.info("SQL executed successfully")
+        was_fixed = False
+        last_error = None
 
-        except Exception as e:
-            self.logger.error(f"SQL execution failed: {e}")
+        # Execute SQL with retry mechanism
+        for attempt in range(MAX_SQL_RETRIES + 1):
 
-            self.logger.info("Attempting to fix SQL")
-            # Try fixing SQL
-            fixed_sql = fix_sql(
-                question=question,
-                schema=self.schema,
-                failed_sql=sql,
-                error=str(e),
-                llm=self.llm,
-            )
-            self.logger.info(f"Fixed SQL: {fixed_sql}")
+            attempt_number = attempt + 1
 
-            # Validate fixed SQL
-            if not validate_sql(fixed_sql):
-                self.logger.error("Fixed SQL failed validation")
+            self.logger.info(f"SQL execution attempt {attempt_number}")
+
+            # Validate SQL before execution
+            if not validate_sql(final_sql):
+
+                self.logger.error(
+                    f"SQL validation failed on attempt " f"{attempt_number}"
+                )
+
                 return SQLResponse(
                     question=question,
-                    sql=fixed_sql,
+                    sql=final_sql,
                     original_sql=original_sql,
-                    answer="The generated SQL could not be safely fixed.",
+                    answer="Generated SQL was unsafe or invalid.",
                     success=False,
-                    was_fixed=True,
-                    error="Fixed SQL validation failed.",
+                    was_fixed=was_fixed,
+                    error="SQL validation failed.",
                 )
 
             try:
-                self.logger.info("Executing fixed SQL")
-                # Execute fixed SQL
-                result = execute_sql(db=self.db, sql_query=fixed_sql)
-                self.logger.info("Fixed SQL executed successfully")
 
+                self.logger.info(f"Executing SQL on attempt " f"{attempt_number}")
+
+                result = execute_sql(
+                    db=self.db,
+                    sql_query=final_sql,
+                )
+
+                self.logger.info(
+                    f"SQL executed successfully on attempt " f"{attempt_number}"
+                )
+
+                # Stop retrying because execution succeeded
+                break
+
+            except Exception as e:
+
+                last_error = str(e)
+
+                self.logger.error(
+                    f"SQL execution failed on attempt "
+                    f"{attempt_number}: {last_error}"
+                )
+
+                # Check whether retry limit is reached
+                if attempt == MAX_SQL_RETRIES:
+
+                    self.logger.error("Maximum SQL retry limit reached")
+
+                    return SQLResponse(
+                        question=question,
+                        sql=final_sql,
+                        original_sql=original_sql,
+                        answer=("SQL execution failed after " "multiple attempts."),
+                        success=False,
+                        was_fixed=was_fixed,
+                        error=last_error,
+                    )
+
+                # Try fixing the SQL
+                self.logger.info(
+                    f"Attempting to fix SQL after " f"attempt {attempt_number}"
+                )
+
+                fixed_sql = fix_sql(
+                    question=question,
+                    schema=self.schema,
+                    failed_sql=final_sql,
+                    error=last_error,
+                    llm=self.llm,
+                )
+
+                self.logger.info(f"Fixed SQL: {fixed_sql}")
+
+                # Use fixed SQL for the next attempt
                 final_sql = fixed_sql
                 was_fixed = True
-            except Exception as e:
-                self.logger.error(f"Fixed SQL execution failed: {e}")
-                return SQLResponse(
-                    question=question,
-                    sql=fixed_sql,
-                    answer="SQL execution failed.",
-                    success=False,
-                    error=str(e),
-                )
+
+        # Generate final answer
         self.logger.info("Generating final answer")
-        # Generate natural language answer
+
         answer = generate_answer(
-            question=question, sql=final_sql, result=result, llm=self.llm
+            question=question,
+            sql=final_sql,
+            result=result,
+            llm=self.llm,
         )
+
         self.logger.info("Answer generated successfully")
-        # Add to conversation memory
-        self.memory.add(question=question, sql=final_sql, answer=answer)
+
+        # Save successful conversation to memory
+        self.memory.add(
+            question=question,
+            sql=final_sql,
+            answer=answer,
+        )
+
         self.logger.info("Conversation added to memory")
+
         return SQLResponse(
             question=question,
             sql=final_sql,

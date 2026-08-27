@@ -7,6 +7,8 @@ load_dotenv()
 
 DB_PATH = os.getenv("DB_PATH", "data/Chinook.db")
 
+MAX_SQL_RETRIES = int(os.getenv("MAX_SQL_RETRIES", "2"))
+
 MODEL_NAME = os.getenv("MODEL_NAME", "openai/gpt-oss-120b")
 
 TEMPERATURE = float(os.getenv("TEMPERATURE", "0.0"))

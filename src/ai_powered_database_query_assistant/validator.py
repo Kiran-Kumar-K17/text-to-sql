@@ -1,13 +1,22 @@
-def validate_sql(sql_query: str) -> bool:
+import re
 
+
+def validate_sql(sql_query: str) -> bool:
     sql = sql_query.strip()
+
+    if not sql:
+        return False
+
+    # Remove trailing semicolon
+    sql = sql.rstrip(";").strip()
+
     upper_sql = sql.upper()
 
-    # Allow only read queries
+    # Allow only read-only queries
     if not (upper_sql.startswith("SELECT") or upper_sql.startswith("WITH")):
         return False
 
-    # Block dangerous SQL operations
+    # Block dangerous SQL keywords as whole words
     forbidden_keywords = [
         "INSERT",
         "UPDATE",
@@ -23,15 +32,14 @@ def validate_sql(sql_query: str) -> bool:
     ]
 
     for keyword in forbidden_keywords:
-        if keyword in upper_sql:
+        pattern = rf"\b{keyword}\b"
+
+        if re.search(pattern, upper_sql):
             return False
 
     # Prevent multiple SQL statements
-    statements = [
-        statement.strip() for statement in sql.split(";") if statement.strip()
-    ]
-
-    if len(statements) != 1:
+    # A semicolon should only be allowed at the end
+    if ";" in sql:
         return False
 
     return True

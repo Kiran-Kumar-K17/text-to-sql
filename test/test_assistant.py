@@ -1,6 +1,7 @@
 from unittest.mock import Mock, patch
 
 from ai_powered_database_query_assistant.assistant import SQLAssistant
+from ai_powered_database_query_assistant.config import MAX_SQL_RETRIES
 
 # ============================================================
 # Helper function
@@ -73,7 +74,6 @@ def test_successful_query(
 
 @patch("ai_powered_database_query_assistant.assistant.validate_question")
 def test_invalid_question(mock_validate_question):
-
     assistant = create_assistant()
 
     # Question is invalid
@@ -82,14 +82,13 @@ def test_invalid_question(mock_validate_question):
     response = assistant.ask("q")
 
     assert response.success is False
-
     assert response.sql == ""
 
     assert response.answer == (
         "Please ask a clear question that can be answered " "using the database."
     )
 
-    assert response.error == ("Invalid or unclear question.")
+    assert response.error == "Invalid or unclear question."
 
 
 # ============================================================
@@ -105,7 +104,6 @@ def test_unsafe_sql(
     mock_generate_sql,
     mock_validate_sql,
 ):
-
     assistant = create_assistant()
 
     # Valid question
@@ -120,12 +118,9 @@ def test_unsafe_sql(
     response = assistant.ask("Delete all customers")
 
     assert response.success is False
-
-    assert response.sql == ("DELETE FROM Customer;")
-
-    assert response.answer == ("Generated SQL was unsafe or invalid.")
-
-    assert response.error == ("SQL validation failed.")
+    assert response.sql == "DELETE FROM Customer;"
+    assert response.answer == "Generated SQL was unsafe or invalid."
+    assert response.error == "SQL validation failed."
 
 
 # ============================================================
@@ -147,7 +142,6 @@ def test_sql_fix_success(
     mock_execute_sql,
     mock_generate_answer,
 ):
-
     assistant = create_assistant()
 
     # Valid question
@@ -175,21 +169,20 @@ def test_sql_fix_success(
     response = assistant.ask("Show customers")
 
     assert response.success is True
-
     assert response.was_fixed is True
-
-    assert response.sql == ("SELECT * FROM Customer;")
-
-    assert response.original_sql == ("SELECT * FROM Customers;")
-
-    assert response.answer == ("Here is the customer.")
+    assert response.sql == "SELECT * FROM Customer;"
+    assert response.original_sql == "SELECT * FROM Customers;"
+    assert response.answer == "Here is the customer."
 
     # Ensure fixer was called once
     mock_fix_sql.assert_called_once()
 
+    # Ensure SQL was executed twice
+    assert mock_execute_sql.call_count == 2
+
 
 # ============================================================
-# 5. FIXED SQL ALSO FAILS
+# 5. ALL SQL RETRIES FAIL
 # ============================================================
 
 
@@ -205,7 +198,6 @@ def test_fixed_sql_execution_fails(
     mock_validate_sql,
     mock_execute_sql,
 ):
-
     assistant = create_assistant()
 
     # Valid question
@@ -217,10 +209,10 @@ def test_fixed_sql_execution_fails(
     # SQL passes safety validation
     mock_validate_sql.return_value = True
 
-    # First execution fails
-    # Fixed SQL execution also fails
+    # Every execution attempt fails
     mock_execute_sql.side_effect = [
         Exception("no such table: WrongTable"),
+        Exception("still invalid SQL"),
         Exception("still invalid SQL"),
     ]
 
@@ -230,7 +222,112 @@ def test_fixed_sql_execution_fails(
     response = assistant.ask("Show something")
 
     assert response.success is False
+    assert response.answer == "SQL execution failed after multiple attempts."
+    assert response.error == "still invalid SQL"
 
-    assert response.answer == ("SQL execution failed.")
+    # Verify retry behavior
+    assert mock_execute_sql.call_count == MAX_SQL_RETRIES + 1
+    assert mock_fix_sql.call_count == MAX_SQL_RETRIES
 
-    assert response.error == ("still invalid SQL")
+
+# ============================================================
+# 6. RETRY SUCCESS ON SECOND ATTEMPT
+# ============================================================
+
+
+@patch("ai_powered_database_query_assistant.assistant.generate_answer")
+@patch("ai_powered_database_query_assistant.assistant.fix_sql")
+@patch("ai_powered_database_query_assistant.assistant.execute_sql")
+@patch("ai_powered_database_query_assistant.assistant.validate_sql")
+@patch("ai_powered_database_query_assistant.assistant.generate_sql")
+@patch("ai_powered_database_query_assistant.assistant.validate_question")
+def test_sql_retry_success(
+    mock_validate_question,
+    mock_generate_sql,
+    mock_validate_sql,
+    mock_execute_sql,
+    mock_fix_sql,
+    mock_generate_answer,
+):
+    assistant = create_assistant()
+
+    # Valid question
+    mock_validate_question.return_value = True
+
+    # Initial SQL
+    mock_generate_sql.return_value = "SELECT * FROM WrongTable;"
+
+    # SQL is safe
+    mock_validate_sql.return_value = True
+
+    # First attempt fails
+    # Second attempt succeeds
+    mock_execute_sql.side_effect = [
+        Exception("no such table: WrongTable"),
+        "[(1, 'Success')]",
+    ]
+
+    # Fixed SQL
+    mock_fix_sql.return_value = "SELECT * FROM CorrectTable;"
+
+    # Final answer
+    mock_generate_answer.return_value = "Query succeeded."
+
+    response = assistant.ask("Show something")
+
+    assert response.success is True
+    assert response.was_fixed is True
+    assert response.sql == "SELECT * FROM CorrectTable;"
+    assert response.answer == "Query succeeded."
+
+    # First attempt + second attempt
+    assert mock_execute_sql.call_count == 2
+
+    # Only one fix was needed
+    assert mock_fix_sql.call_count == 1
+
+
+# ============================================================
+# 7. RETRIES STOP AT MAXIMUM LIMIT
+# ============================================================
+
+
+@patch("ai_powered_database_query_assistant.assistant.fix_sql")
+@patch("ai_powered_database_query_assistant.assistant.execute_sql")
+@patch("ai_powered_database_query_assistant.assistant.validate_sql")
+@patch("ai_powered_database_query_assistant.assistant.generate_sql")
+@patch("ai_powered_database_query_assistant.assistant.validate_question")
+def test_sql_stops_after_max_retries(
+    mock_validate_question,
+    mock_generate_sql,
+    mock_validate_sql,
+    mock_execute_sql,
+    mock_fix_sql,
+):
+    assistant = create_assistant()
+
+    # Valid question
+    mock_validate_question.return_value = True
+
+    # Initial SQL
+    mock_generate_sql.return_value = "SELECT * FROM WrongTable;"
+
+    # SQL passes validation
+    mock_validate_sql.return_value = True
+
+    # Every execution fails
+    mock_execute_sql.side_effect = Exception("SQL execution failed")
+
+    # SQL fixer keeps generating another query
+    mock_fix_sql.return_value = "SELECT * FROM StillWrongTable;"
+
+    response = assistant.ask("Show something")
+
+    assert response.success is False
+    assert response.answer == "SQL execution failed after multiple attempts."
+
+    # Verify exactly MAX_SQL_RETRIES executions
+    assert mock_execute_sql.call_count == MAX_SQL_RETRIES + 1
+
+    # Fix is called after every failure except the last one
+    assert mock_fix_sql.call_count == MAX_SQL_RETRIES
